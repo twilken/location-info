@@ -1,0 +1,59 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+#container {
+	width: 100%;
+	height: 100%;
+	background-color: purple;
+}
+#sidebar {
+	float: left;
+	background-color: orange;
+}
+#map {
+	float: right;
+	width: 100%;
+	background-color: pink;
+}
+#hamburger {
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
+	background-color: rgba(0, 0, 0, 0.3);
+	border: none;
+}
+#hamburger:focus {
+	outline: 0;
+}
+
+
+
+/* ========================== */
+/* ===== HAMBURGER MENU ===== */
+/* ========================== */
+.slideout-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  width: 256px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+}
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+}
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+.slideout-open .slideout-menu {
+  display: block;
+}
