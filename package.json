@@ -13,6 +13,6 @@
   },
   "homepage": "https://github.com/twilken/location-info#readme",
   "dependencies": {
-    "slideout": "^0.1.12"
+    "knockout": "^3.4.0"
   }
 }

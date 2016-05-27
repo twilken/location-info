@@ -4,10 +4,12 @@
 <head>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
-	<script defer src="node_modules/slideout/dist/slideout.min.js"></script>
+	<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script defer src="node_modules/knockout/build/output/knockout-latest.js"></script>
 	<script defer src="js/script.js"></script>
 
 </head>
@@ -16,14 +18,32 @@
 
 	<div id="container">
 
-		<div id="sidebar">
+		<div id="list">
+			<input type="text" id="filter" data-bind="textInput: filter">
+			<ul id="places" data-bind="foreach: places">
+				<li data-bind="text: location, visible: visible"></li>
+			</ul>
 		</div>
 
 		<div id="map">
-			<button id="hamburger">☰</button>
 		</div>
 
+		</div>
 	</div>
+
+	<script>
+		var map;
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {
+					lat: -34.397,
+					lng: 150.644
+				},
+				zoom: 8
+			});
+		}
+	</script>
+	<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMH8iKkZprQAJp0fGcODpTlMTXWR-gpmU&callback=initMap"></script> -->
 
 </body>
 
