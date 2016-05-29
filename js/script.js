@@ -70,8 +70,13 @@ $(function() {
             }]
         );
 
-        // Initialize map markers
+        // Map markers
         self.markers = [self.places().length];
+
+        // Map marker info windows
+        self.infoWindows = [self.places().length];
+
+        // Initialize map markers and info windows
         for (var i = 0; i < self.places().length; i++) {
             var marker = new google.maps.Marker({
                 position: self.places()[i].latLng,
@@ -81,13 +86,20 @@ $(function() {
             });
 
             // Add click listener for every marker
-            (function(marker) {
+            (function(marker, i) {
                 marker.addListener('click', function() {
                     self.bounceMarkerOnce(marker);
+                    self.showPlaceInfo(i);
                 });
-            }(marker));
+            }(marker, i));
 
             self.markers[i] = marker;
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: self.places()[i].location
+            });
+
+            self.infoWindows[i] = infoWindow;
         }
 
         self.bounceMarkerOnce = function(marker) {
@@ -97,14 +109,20 @@ $(function() {
             }, 750);
         }
 
-        self.showPlaceInfo = function() {
-
+        // Display info window with wikipedia article
+        self.showPlaceInfo = function(index) {
+            for (var i = 0; i < self.infoWindows.length; i++) {
+                self.infoWindows[i].close();
+            }
+            console.log(self.infoWindows[index]);
+            self.infoWindows[index].open(map, self.markers[index]);
         }
 
         self.itemSelected = function(place) {
             var index = self.places().indexOf(place);
-            self.bounceMarkerOnce(self.markers[index]);
-            self.showPlaceInfo();
+            var marker = self.markers[index];
+            self.bounceMarkerOnce(marker);
+            self.showPlaceInfo(index);
         }
 
         // Value of the filter input field
