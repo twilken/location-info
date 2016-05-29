@@ -10,6 +10,7 @@
 
 	<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script defer src="node_modules/knockout/build/output/knockout-latest.js"></script>
+	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMH8iKkZprQAJp0fGcODpTlMTXWR-gpmU"></script>
 	<script defer src="js/script.js"></script>
 
 </head>
@@ -21,29 +22,14 @@
 		<div id="list">
 			<input type="text" id="filter" data-bind="textInput: filter">
 			<ul id="places" data-bind="foreach: places">
-				<li data-bind="text: location, visible: visible"></li>
+				<li class="place" data-bind="text: location, visible: visible, click: $parent.itemSelected"></li>
 			</ul>
 		</div>
 
 		<div id="map">
 		</div>
 
-		</div>
 	</div>
-
-	<script>
-		var map;
-		function initMap() {
-			map = new google.maps.Map(document.getElementById('map'), {
-				center: {
-					lat: -34.397,
-					lng: 150.644
-				},
-				zoom: 8
-			});
-		}
-	</script>
-	<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMH8iKkZprQAJp0fGcODpTlMTXWR-gpmU&callback=initMap"></script> -->
 
 </body>
 
