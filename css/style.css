@@ -9,18 +9,16 @@ html, body {
 #container {
 	width: 100%;
 	height: 100%;
-	background-color: purple;
 	display: flex;
 	flex-wrap: wrap;
 }
-
 #list {
 	background-color: #333;
 	color: #fff;
 	width: 35%;
+	overflow-y: auto;
 }
 #filter {
-	padding: 5%;
 	width: 90%;
 	margin: 5%;
 	height: 1.5em;
@@ -30,7 +28,7 @@ html, body {
 	list-style: none;
 }
 .place {
-	padding: 5%;
+	padding: 2% 5%;
 	cursor: pointer;
 	font-size: 1.1em;
 	font-family: Helvetica, sans-serif;
@@ -44,7 +42,9 @@ html, body {
 	background-color: pink;
 }
 .infoWindow {
-	font-size: 1.1em;
+	padding: 2%;
+}
+.infoWindowTitle {
 	padding: 2%;
 }
 @media (max-width: 650px) {
