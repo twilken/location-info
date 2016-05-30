@@ -47,20 +47,6 @@ $(function() {
                 },
                 visible: ko.observable(true)
             }, {
-                location: "St. Patrick's Cathedral",
-                latLng: {
-                    lat: 40.758465,
-                    lng: -73.975993
-                },
-                visible: ko.observable(true)
-            }, {
-                location: "Brookfield Place",
-                latLng: {
-                    lat: 40.713192,
-                    lng: -74.015913
-                },
-                visible: ko.observable(true)
-            }, {
                 location: "Governors Island National Monument",
                 latLng: {
                     lat: 40.68945,
@@ -96,7 +82,7 @@ $(function() {
             self.markers[i] = marker;
 
             var infoWindow = new google.maps.InfoWindow({
-                content: self.places()[i].location
+                content: null
             });
 
             self.infoWindows[i] = infoWindow;
@@ -109,12 +95,35 @@ $(function() {
             }, 750);
         }
 
+        self.wikiApi = function(index) {
+            var outer = this;
+            var place = self.places()[index];
+
+            var url = "https://en.wikipedia.org/w/api.php";
+            url += '?' + $.param({
+                'action': "opensearch",
+                'search': place.location
+            });
+
+            $.ajax({
+                url: url,
+                context: this,
+                dataType: 'jsonp',
+                success: function(data) {
+                    var content = '<p class="infoWindow">' + data[2][0] + '</p>';
+                    this.infoWindows[index].setContent(content);
+                }
+            });
+        }
+
         // Display info window with wikipedia article
         self.showPlaceInfo = function(index) {
             for (var i = 0; i < self.infoWindows.length; i++) {
                 self.infoWindows[i].close();
             }
-            console.log(self.infoWindows[index]);
+            if (self.infoWindows[index].getContent() == null) {
+                self.wikiApi(index);
+            }
             self.infoWindows[index].open(map, self.markers[index]);
         }
 

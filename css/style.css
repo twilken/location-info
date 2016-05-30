@@ -38,13 +38,15 @@ html, body {
 .place:hover {
 	background-color: #666;
 }
-
 #map {
 	width: 65%;
 	height: 100%;
 	background-color: pink;
 }
-
+.infoWindow {
+	font-size: 1.1em;
+	padding: 2%;
+}
 @media (max-width: 650px) {
 	#list {
 		width: 100%;
