@@ -1,37 +1,25 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-
-
+	<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
 	<div id="container">
-
 		<div id="list">
 			<input type="text" id="filter" data-bind="textInput: filter">
 			<ul id="places" data-bind="foreach: places">
 				<li class="place" data-bind="text: location, visible: visible, click: $parent.itemSelected"></li>
 			</ul>
 		</div>
-
 		<div id="map">
 		</div>
-
 	</div>
-
 	<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script defer src="node_modules/knockout/build/output/knockout-latest.js"></script>
 	<script defer src="js/script.js"></script>
 	<script defer async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMH8iKkZprQAJp0fGcODpTlMTXWR-gpmU&callback=initMap"></script>
-
 </body>
-
 </html>
